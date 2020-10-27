@@ -10,9 +10,14 @@
         },
         mounted: function () {
             let self = this;
-            axios.get("/images").then(function (response) {
-                self.images = response.data;
-            });
+            axios
+                .get("/images")
+                .then(function (response) {
+                    self.images = response.data;
+                })
+                .catch(function (err) {
+                    console.log("error in GET / images: ", err);
+                });
         },
         methods: {
             handleClick: function (e) {
@@ -26,14 +31,15 @@
                 formData.append("file", this.file);
 
                 // no console.log needed here, it will show an empty obj
-
+                var self = this;
                 axios
-                    .post("/upload", formData)
+                    .post("/images", formData)
                     .then(function (response) {
-                        console.log("response from POST / upload: ", response);
+                        console.log("response from POST / images: ", response);
+                        self.images.unshift(response.data.rows);
                     })
                     .catch(function (err) {
-                        console.log("err in POST /upload: ", err);
+                        console.log("err in POST /images: ", err);
                     });
             },
 

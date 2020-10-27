@@ -4,6 +4,7 @@ const db = require("./db");
 const multer = require("multer"); // multer defines where to save files
 const uidSafe = require("uid-safe"); // encodes file name
 const path = require("path"); // grabs extention (jpg)
+const s3 = require("./s3");
 
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -36,12 +37,21 @@ app.get("/images", (req, res) => {
         });
 });
 
-app.post("/upload", uploader.single("file"), function (req, res) {
+app.post("/images", uploader.single("file"), s3.upload, function (req, res) {
     // If nothing went wrong the file is already in the uploads directory
+    const { title, description, username } = req.body;
     if (req.file) {
-        res.json({
-            success: true,
-        });
+        const { filename } = req.file;
+        const url = `https://s3.amazonaws.com/spicedling/${filename}`;
+        db.postImages(title, description, username, url)
+            .then(({ rows }) => {
+                rows = rows[0];
+                res.json({ rows });
+                console.log("rows: ", rows);
+            })
+            .catch((err) => {
+                console.log("error in postImages", err);
+            });
     } else {
         res.json({
             success: false,
