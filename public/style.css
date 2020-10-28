@@ -30,18 +30,18 @@ img {
 .modal-component {
     position: absolute;
     top: 50%;
-    left: 51%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 700px;
-    height: 700px;
-    background-color: white;
-    border: 1px solid white;
+    width: 600px;
+    height: 600px;
+    background-color: black;
+    border: 1px solid black;
     border-radius: 10px;
     /* visibility: hidden; */
 }
 
-#overlay {
+/* #overlay {
     position: fixed;
     background: rgba(3, 3, 3, 0.5);
     top: 0;
@@ -50,4 +50,4 @@ img {
     left: 0;
     z-index: 0;
     /* visibility: hidden; */
-}
+} */

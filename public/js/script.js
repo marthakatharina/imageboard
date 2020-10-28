@@ -1,21 +1,34 @@
 (function () {
     Vue.component("my-component", {
-        props: ["id"],
-        data: {
-            id: "",
+        template: "#template",
+        props: ["selectedImage"],
+        data: function () {
+            return {
+                selectedImage: "",
+            };
         },
         methods: {
             closeModal: function () {
-                console.log("props: ", this.id);
+                console.log("props: ", this.selectedImage);
             },
         },
-        template: "#template",
+        mounted: function () {
+            var me = this;
+            axios
+                .get(`/image/${this.image.id}`)
+                .then(function (response) {
+                    me.selectedImage = response.data;
+                })
+                .catch(function (err) {
+                    console.log("error in GET / images: ", err);
+                });
+        },
     });
 
     new Vue({
         el: "#main",
         data: {
-            selectedImage: null,
+            selectedImage: null, // image.id
             images: [],
             title: "",
             description: "",
