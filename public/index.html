@@ -24,15 +24,30 @@
    <div v-for="image in images">
 
     <div id="image-item" >
-<img :src="image.url">
-<!--  -->
+<img :src="image.url" @click="openModal(image.id)" >
+
     </div>
 <p>{{ image.title }}</p>
 
     </div>
 
     </div>
+
+<my-component v-if="selectedImage" :id="selectedImage" @close="closeModal"></my-component>
+
 </div>
+
+<script id="template" type="text/x-template">
+<div class="modal-component">
+   <input v-model="comment" type="text" name="comment" >
+    <input v-model="username" type="text" name="username">
+    <button @click="closeModal">submit</button>
+
+    <div id="overlay"></div>
+
+</div>
+</script>
+
 
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
@@ -53,3 +68,10 @@
     <!-- <img :src="city.name" alt="">  -->
     <!-- :src or v-bind:scr -->
 <!-- </ul> --> 
+
+<!-- :say-greeting refers to data inside of the instance new Vue({}) and prop:[sayGreeting] and in new Vue js
+we need to reneder the input inside of my-componenet 
+we need to ad id to our data images  -->
+
+<!-- v-if="checkForSomething" check if the same id -->
+<!-- id = null to close the component  -->

@@ -40,9 +40,10 @@ app.get("/images", (req, res) => {
 app.post("/images", uploader.single("file"), s3.upload, function (req, res) {
     // If nothing went wrong the file is already in the uploads directory
     const { title, description, username } = req.body;
+    const { filename } = req.file;
+    const url = `https://s3.amazonaws.com/spicedling/${filename}`;
+
     if (req.file) {
-        const { filename } = req.file;
-        const url = `https://s3.amazonaws.com/spicedling/${filename}`;
         db.postImages(title, description, username, url)
             .then(({ rows }) => {
                 rows = rows[0];

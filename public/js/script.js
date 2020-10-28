@@ -1,7 +1,21 @@
 (function () {
+    Vue.component("my-component", {
+        props: ["id"],
+        data: {
+            id: "",
+        },
+        methods: {
+            closeModal: function () {
+                console.log("props: ", this.id);
+            },
+        },
+        template: "#template",
+    });
+
     new Vue({
         el: "#main",
         data: {
+            selectedImage: null,
             images: [],
             title: "",
             description: "",
@@ -47,6 +61,12 @@
                 console.log("handleChange is running!!!!");
                 console.log("file: ", e.target.files[0]);
                 this.file = e.target.files[0];
+            },
+
+            openModal: function (id) {
+                console.log("openModel is running!!!!");
+                console.log("id: ", id);
+                this.selectedImage = id;
             },
         },
     });

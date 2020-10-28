@@ -26,3 +26,28 @@ img {
     width: 250px;
     height: 250px;
 }
+
+.modal-component {
+    position: absolute;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 700px;
+    height: 700px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    /* visibility: hidden; */
+}
+
+#overlay {
+    position: fixed;
+    background: rgba(3, 3, 3, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    /* visibility: hidden; */
+}
