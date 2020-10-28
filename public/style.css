@@ -35,7 +35,7 @@ img {
     z-index: 2;
     width: 600px;
     height: 600px;
-    background-color: black;
+    background-color: white;
     border: 1px solid black;
     border-radius: 10px;
     /* visibility: hidden; */

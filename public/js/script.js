@@ -1,26 +1,27 @@
 (function () {
     Vue.component("my-component", {
         template: "#template",
-        props: ["selectedImage"],
+        props: ["id"],
         data: function () {
             return {
-                selectedImage: "",
+                image: "",
             };
         },
         methods: {
             closeModal: function () {
-                console.log("props: ", this.selectedImage);
+                this.$emit("close");
             },
         },
         mounted: function () {
+            console.log("this: ", this);
             var me = this;
             axios
-                .get(`/image/${this.image.id}`)
+                .get(`/images/${this.id}`)
                 .then(function (response) {
-                    me.selectedImage = response.data;
+                    me.image = response.data[0];
                 })
                 .catch(function (err) {
-                    console.log("error in GET / images: ", err);
+                    console.log("error in GET / image/: ", err);
                 });
         },
     });
@@ -80,6 +81,10 @@
                 console.log("openModel is running!!!!");
                 console.log("id: ", id);
                 this.selectedImage = id;
+            },
+
+            closeModal: function () {
+                this.selectedImage = null;
             },
         },
     });
