@@ -5,9 +5,9 @@
         data: function () {
             return {
                 image: "",
-                username: "",
                 comments: [],
                 comment: "",
+                username: "",
             };
         },
 
@@ -29,24 +29,31 @@
                     // me.username = response.data;
                 })
                 .catch(function (err) {
-                    console.log("error in GET /comments/: ", err);
+                    console.log("error in GET /comments ", err);
                 });
         },
         methods: {
             handleClickComment: function (e) {
                 e.preventDefault();
                 let me = this;
+                console.log("this: ", this);
+                console.log("this.comments: ", this.comments);
                 var newComment = {};
 
                 newComment.id = this.id;
-                newComment.comment = this.comment;
                 newComment.username = this.username;
+                newComment.comment = this.comment;
 
                 axios
                     .post("/comment", { newComment })
                     .then(function (response) {
+                        console.log("me.comments: ", me.comments);
                         console.log("response from POST /comment: ", response);
-                        me.comments.unshift(response.data.rows);
+                        me.comments.unshift(response.data);
+                        console.log(
+                            "response.data[0]: ",
+                            response.data.rows[0]
+                        );
                     })
                     .catch(function (err) {
                         console.log("err in POST /comment: ", err);
@@ -68,7 +75,6 @@
             description: "",
             username: "",
             file: null,
-            comments: [],
         },
         mounted: function () {
             let self = this;

@@ -86,14 +86,14 @@ app.get("/comments/:id", (req, res) => {
         });
 });
 
-app.post("/comments", (req, res) => {
+app.post("/comment", (req, res) => {
     console.log("req.body: ", req.body);
-    const { comment, username, id } = req.body;
+    const { comment, username, id } = req.body.newComment;
     db.postComments(comment, username, id)
         .then(({ rows }) => {
             rows = rows[0];
             res.json({ rows });
-            console.log("rows: ", rows);
+            console.log("rows in POST: ", rows);
         })
         .catch((err) => {
             console.log("error in postComments", err);

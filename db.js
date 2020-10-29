@@ -27,8 +27,9 @@ module.exports.getComments = (id) => {
 };
 
 module.exports.postComments = (comment, username, id) => {
+    console.log("comment, username, id: ", comment, username, id);
     return db.query(
-        `INSERT INTO comments (username, comment, image_id)
+        `INSERT INTO comments (comment, username, image_id)
         VALUES ($1, $2, $3) RETURNING *`,
         [comment, username, id]
     );

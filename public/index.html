@@ -55,12 +55,14 @@
     <form>    
    <input v-model="comment" type="text" name="comment" placeholder="comment"> 
     <input v-model="username" type="text" name="username" placeholder="username">
+   
     <button @click="handleClickComment">submit</button>
 
-     <p>comment: {{comment.comment}}</p>
-     <p>username: {{comment.username}}</p>
-   
-
+    <div v-for="s in comments">
+    <p>{{s}}</p>
+    <p> {{s}}</p> 
+    </div>
+    
 
     </form>
     </div>
