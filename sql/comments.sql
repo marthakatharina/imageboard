@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS comments CASCADE;
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    comment TEXT NOT NULL,
+    username TEXT NOT NULL,
+    image_id INTEGER NOT NULL REFERENCES images(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

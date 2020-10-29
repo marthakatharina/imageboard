@@ -35,19 +35,28 @@ img {
     z-index: 2;
     width: 600px;
     height: 600px;
-    background-color: white;
+    background-color: black;
+    color: white;
     border: 1px solid black;
     border-radius: 10px;
     /* visibility: hidden; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-component img {
+    width: 400px;
+    height: 400px;
 }
 
 /* #overlay {
     position: fixed;
-    background: rgba(3, 3, 3, 0.5);
+    background: rgba(100, 100, 100, 0.5);
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: 0;
     /* visibility: hidden; */
-} */
+/* } */

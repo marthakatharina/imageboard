@@ -21,7 +21,15 @@
                     me.image = response.data[0];
                 })
                 .catch(function (err) {
-                    console.log("error in GET / image/: ", err);
+                    console.log("error in GET /images/: ", err);
+                });
+            axios
+                .get(`/comments/${this.id}`)
+                .then(function (response) {
+                    me.comments = response.data;
+                })
+                .catch(function (err) {
+                    console.log("error in GET /comments/: ", err);
                 });
         },
     });
@@ -84,6 +92,7 @@
             },
 
             closeModal: function () {
+                console.log("closeModel is running!!!!");
                 this.selectedImage = null;
             },
         },

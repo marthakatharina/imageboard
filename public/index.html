@@ -39,20 +39,27 @@
 
 <script id="template" type="text/x-template">
 <div class="modal-component">
-    <img :src="image.url" >
-    <!-- url: {{image.url}}
-    username: {{image.username}}
-    title: {{image.title}}
-    description: {{image.description}}
-    created_at: {{image.created_at}}  -->
+      <p @click='closeModal'>X</p>
     
-    <form>
-        <input v-model='selectedImage' type="hidden" name="selectedImage">
-   <input v-model="comment" type="text" name="comment" >
-    <input v-model="username" type="text" name="username">
-    <button @click="closeModal">submit</button>
+    <div id=modal-content>
+       
+       
+    <p><img :src="image.url"></p>
+    <p>username: {{image.username}}</p>
+    <p>title: {{image.title}}</p>
+    <p>description: {{image.description}}</p>
+    <p>created: {{image.created_at}} </p>
+      
+    
+    
+    <form>    
+   <input v-model="comment" type="text" name="comment" placeholder="comment"> 
+    <input v-model="username" type="text" name="username" placeholder="username">
+    <button @click="handleClick">submit</button>
 
     </form>
+    </div>
+    
 
     <!-- <div id="overlay"></div> -->
 
