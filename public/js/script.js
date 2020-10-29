@@ -5,16 +5,15 @@
         data: function () {
             return {
                 image: "",
+                username: "",
+                comments: [],
+                comment: "",
             };
         },
-        methods: {
-            closeModal: function () {
-                this.$emit("close");
-            },
-        },
+
         mounted: function () {
             console.log("this: ", this);
-            var me = this;
+            let me = this;
             axios
                 .get(`/images/${this.id}`)
                 .then(function (response) {
@@ -27,10 +26,36 @@
                 .get(`/comments/${this.id}`)
                 .then(function (response) {
                     me.comments = response.data;
+                    // me.username = response.data;
                 })
                 .catch(function (err) {
                     console.log("error in GET /comments/: ", err);
                 });
+        },
+        methods: {
+            handleClickComment: function (e) {
+                e.preventDefault();
+                let me = this;
+                var newComment = {};
+
+                newComment.id = this.id;
+                newComment.comment = this.comment;
+                newComment.username = this.username;
+
+                axios
+                    .post("/comment", { newComment })
+                    .then(function (response) {
+                        console.log("response from POST /comment: ", response);
+                        me.comments.unshift(response.data.rows);
+                    })
+                    .catch(function (err) {
+                        console.log("err in POST /comment: ", err);
+                    });
+            },
+
+            closeModal: function () {
+                this.$emit("close");
+            },
         },
     });
 
@@ -43,6 +68,7 @@
             description: "",
             username: "",
             file: null,
+            comments: [],
         },
         mounted: function () {
             let self = this;
@@ -55,6 +81,7 @@
                     console.log("error in GET / images: ", err);
                 });
         },
+
         methods: {
             handleClick: function (e) {
                 e.preventDefault();
@@ -98,52 +125,3 @@
         },
     });
 })();
-
-// console.log("sanity check");
-
-// new Vue({
-//     el: "#main",
-//     data: {
-//         name: "Pimento",
-//         seen: true,
-//         cities: [
-//             // {
-//             //     name: "Berlin",
-//             //     country: "Germany",
-//             // },
-//             // {
-//             //     name: "Warsaw",
-//             //     country: "Poland",
-//             // },
-//         ],
-//     },
-//     mounted: function () {
-//         console.log("mounted");
-//         console.log("this.name", this.name);
-//         console.log("this.cities", this.cities);
-//         // this.cities = [
-//         //     { name: "Berlin", country: "Germany" },
-//         //     { name: "Warsaw", country: "Poland" },
-//         // ];
-
-//         //axios is e library for makin db requests
-//         var self = this; // self used instead of this
-
-//         axios.get("/cities").then(function (response) {
-//             console.log("response: ", response);
-//             console.log("self: ", self);
-//             console.log("this.cities inside then: ", this.cities);
-//             console.log("this inside then: ", this);
-
-//             // this.cities = response.date;
-//             // this inside then (nested fn) refers to global object so it has to be stored in var
-//             self.cities = response.data;
-//         });
-//     },
-
-//     methods: {
-//         myFancyMethod: function (cityName) {
-//             console.log("clicked", cityName);
-//         },
-//     },
-// });

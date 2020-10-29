@@ -25,6 +25,7 @@ const uploader = multer({
 });
 
 app.use(express.static("public"));
+app.use(express.json());
 
 app.get("/images", (req, res) => {
     db.getImages()
@@ -70,6 +71,32 @@ app.get("/images/:id", (req, res) => {
         })
         .catch((err) => {
             console.log("err in getModalImage: ", err);
+        });
+});
+
+app.get("/comments/:id", (req, res) => {
+    const { id } = req.params;
+    db.getComments(id)
+        .then(({ rows }) => {
+            console.log("rows: ", rows);
+            res.json(rows);
+        })
+        .catch((err) => {
+            console.log("error in getComments: ", err);
+        });
+});
+
+app.post("/comments", (req, res) => {
+    console.log("req.body: ", req.body);
+    const { comment, username, id } = req.body;
+    db.postComments(comment, username, id)
+        .then(({ rows }) => {
+            rows = rows[0];
+            res.json({ rows });
+            console.log("rows: ", rows);
+        })
+        .catch((err) => {
+            console.log("error in postComments", err);
         });
 });
 
