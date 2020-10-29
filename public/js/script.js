@@ -49,11 +49,8 @@
                     .then(function (response) {
                         console.log("me.comments: ", me.comments);
                         console.log("response from POST /comment: ", response);
-                        me.comments.unshift(response.data);
-                        console.log(
-                            "response.data[0]: ",
-                            response.data.rows[0]
-                        );
+                        me.comments.unshift(response.data.rows);
+                        console.log("response.data: ", response.data);
                     })
                     .catch(function (err) {
                         console.log("err in POST /comment: ", err);
