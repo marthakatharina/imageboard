@@ -81,3 +81,11 @@ h1 {
 #form-container {
     margin: 20px;
 }
+
+.more-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 0px;
+}

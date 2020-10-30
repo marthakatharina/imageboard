@@ -100,6 +100,19 @@ app.post("/comment", (req, res) => {
         });
 });
 
+app.get("/:lowestid", (req, res) => {
+    const { lowestid } = req.params;
+    console.log("req.params.lowestid: ", req.params.lowestid);
+    db.getMoreImages(lowestid)
+        .then(({ rows }) => {
+            console.log("rows in getMoreImages: ", rows);
+            res.json(rows);
+        })
+        .catch((err) => {
+            console.log("error in getMoreImages", err);
+        });
+});
+
 app.listen(8080, () => console.log("Imageboard up and running"));
 
 // image should be less than 2MB
