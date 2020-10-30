@@ -40,8 +40,9 @@
 
 
         <my-component v-if="selectedImage" :id="selectedImage" @close="closeModal"></my-component>
+
 <div class="more-button">
-        <button class="button">more</button>
+        <button @click="getMore">more</button>
 </div>
     </div>
 
@@ -52,7 +53,7 @@
     <div id=image-caption-container>
        
        
-    <p><img class="modal-image" :src="image.url"></p>
+    <div class="modal-image-container"><img class="modal-image" :src="image.url"></div>
     <p>username: {{image.username}}</p>
     <p>title: {{image.title}}</p>
     <p>description: {{image.description}}</p>

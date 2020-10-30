@@ -109,6 +109,27 @@
                     });
             },
 
+            getMore: function (e) {
+                e.preventDefault();
+                console.log("click: ");
+                var self = this;
+                var lastId = this.images[this.images.length - 1].id;
+
+                axios
+                    .get(`/more/${lastId}`)
+                    .then(function (response) {
+                        console.log("response from getMore / more: ", response);
+
+                        for (let i = 0; i < response.data.length; i++) {
+                            self.images.push(response.data[i]);
+                            console.log("self.images", self.images);
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log("err in getMore: ", err);
+                    });
+            },
+
             handleChange: function (e) {
                 console.log("handleChange is running!!!!");
                 console.log("file: ", e.target.files[0]);

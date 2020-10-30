@@ -100,10 +100,11 @@ app.post("/comment", (req, res) => {
         });
 });
 
-app.get("/:lowestid", (req, res) => {
-    const { lowestid } = req.params;
-    console.log("req.params.lowestid: ", req.params.lowestid);
-    db.getMoreImages(lowestid)
+app.get("/more/:lastId", (req, res) => {
+    const { lastId } = req.params;
+    console.log("req.params: ", req.params);
+
+    db.getMoreImages(lastId)
         .then(({ rows }) => {
             console.log("rows in getMoreImages: ", rows);
             res.json(rows);
