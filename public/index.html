@@ -1,51 +1,53 @@
 <!doctype html>
 <html>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="assets/cat-black-face.png">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/cat-black-face.png">
+
 <head>
     <title>Imageboard
-</title>
+    </title>
 </head>
+
 <body>
     <img class="cat-icon" src="assets/cat-black-face.png">
     <h1>Imageboard</h1>
-<div id="main">
+    <div id="main">
 
-    <div id="form-container">
-<form>
-    <input v-model="title" type="text" name="title" placeholder="title">
-    <input v-model="description" type="text" name="description" placeholder="description">
-    <input v-model="username" type="text" name="username" placeholder="username">
-    <input @change='handleChange' type="file" name="file" accept="image/*">
-    
-    <button @click="handleClick">submit</button>
-</form>
+        <div id="form-container">
+            <form>
+                <input v-model="title" type="text" name="title" placeholder="title">
+                <input v-model="description" type="text" name="description" placeholder="description">
+                <input v-model="username" type="text" name="username" placeholder="username">
+                <input @change='handleChange' type="file" name="file" accept="image/*">
 
-</div>
+                <button @click="handleClick">submit</button>
+            </form>
 
-<div id="image-container">
-   <div v-for="image in images">
+        </div>
 
-    <div id="image-item" >
-<img :src="image.url" @click="openModal(image.id)" >
+        <div id="image-container">
+            <div v-for="image in images">
+
+                <div id="image-item">
+                    <img :src="image.url" @click="openModal(image.id)">
+
+                </div>
+                <p>{{ image.title }}</p>
+
+            </div>
+
+        </div>
+
+
+        <my-component v-if="selectedImage" :id="selectedImage" @close="closeModal"></my-component>
 
     </div>
-<p>{{ image.title }}</p>
 
-    </div>
- 
-    </div>
-
-
-<my-component v-if="selectedImage" :id="selectedImage" @close="closeModal" ></my-component>
-
-</div>
-
-<script id="template" type="text/x-template">
+    <script id="template" type="text/x-template">
 <div class="modal-component">
       <p @click='closeModal'>X</p>
     
-    <div id=modal-content>
+    <div id=image-caption-container>
        
        
     <p><img class="modal-image" :src="image.url"></p>
@@ -54,23 +56,24 @@
     <p>description: {{image.description}}</p>
     <p>created: {{image.created_at}} </p>
       
+    </div>
     
-    
-    <form>    
+    <div class="form-comment-container">
+ <form>    
    <input v-model="comment" type="text" name="comment" placeholder="comment"> 
-    <input v-model="username" type="text" name="username" placeholder="username">
+   <input v-model="username" type="text" name="username" placeholder="username">
     <!-- <input v-model='id' type="hidden" name="id"> -->
     <button @click="handleClickComment">submit</button>
 
-    <div v-for="c in comments">
+    <div v-for="c in comments"> 
     <p>comment: {{c.comment}}</p>
     <p>username: {{c.username}}</p> 
     <p>posted: {{c.created_at}}</p> 
     </div>
-    
 
-    </form>
-    </div>
+</form>
+     </div>
+<!-- </div> -->
     
 </div>
 
@@ -82,6 +85,7 @@
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js"></script>
 </body>
+
 </html>
 
 
@@ -92,11 +96,11 @@
 <ul>
     <li v-for="city in cities" v-on:click="myFancyMethod">{{city.name}}, {{city.country}}</li> 
     <!-- city refers to object {name, object} in array, name is not relevant, can be whatever, value is relevant-->
-    <!-- v-on:click= or @click  -->
+<!-- v-on:click= or @click  -->
 
-    <!-- <img :src="city.name" alt="">  -->
-    <!-- :src or v-bind:scr -->
-<!-- </ul> --> 
+<!-- <img :src="city.name" alt="">  -->
+<!-- :src or v-bind:scr -->
+<!-- </ul> -->
 
 <!-- :say-greeting refers to data inside of the instance new Vue({}) and prop:[sayGreeting] and in new Vue js
 we need to reneder the input inside of my-componenet 
