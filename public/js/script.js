@@ -152,19 +152,6 @@
                         for (let i = 0; i < response.data.length; i++) {
                             self.images.push(response.data[i]);
                             console.log("self.images", self.images);
-
-                            // if (
-                            //     response.data[response.data.length - 1].id !==
-                            //     response.data[0].lastId
-                            // ) {
-                            //     console.log(
-                            //         "response.data.length: ",
-                            //         response.data[response.data.length - 1].id
-                            //     );
-                            //     self.more = true;
-                            // } else {
-                            //     self.more = false;
-                            // }
                         }
                     })
                     .catch(function (err) {
