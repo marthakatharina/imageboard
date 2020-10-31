@@ -28,13 +28,15 @@ img {
 }
 
 .modal-component {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 850px;
+    max-width: 100%;
     height: 650px;
+    max-height: 100%;
     background-color: black;
     color: white;
     border: 1px solid black;
@@ -55,20 +57,20 @@ img {
     max-height: 550px;
 }
 
-.modal-image-container {
+/* .modal-image-container {
     overflow: hidden;
-}
+} */
 
-/* #overlay {
+.overlay {
     position: fixed;
-    background: rgba(100, 100, 100, 0.5);
+    background: rgba(50, 50, 50, 0.5);
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: 0;
     /* visibility: hidden; */
-/* } */
+}
 
 .cat-icon {
     width: 40px;
@@ -92,4 +94,19 @@ h1 {
     align-items: center;
     margin-bottom: 40px;
     margin-top: 0px;
+}
+
+.x {
+    /* display: flex;
+    align-self: flex-end; */
+}
+
+.modal-inner-box {
+    display: flex;
+}
+
+#modal-scroll-box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 }
