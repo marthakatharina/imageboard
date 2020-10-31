@@ -11,6 +11,29 @@
             };
         },
 
+        watch: {
+            id: function () {
+                let me = this;
+                axios
+                    .get(`/images/${this.id}`)
+                    .then(function (response) {
+                        me.image = response.data[0];
+                    })
+                    .catch(function (err) {
+                        console.log("error in GET /images/: ", err);
+                    });
+                axios
+                    .get(`/comments/${this.id}`)
+                    .then(function (response) {
+                        me.comments = response.data;
+                        // me.username = response.data;
+                    })
+                    .catch(function (err) {
+                        console.log("error in GET /comments ", err);
+                    });
+            },
+        },
+
         mounted: function () {
             console.log("this: ", this);
             let me = this;
@@ -66,7 +89,7 @@
     new Vue({
         el: "#main",
         data: {
-            selectedImage: null, // image.id
+            selectedImage: location.hash.slice(1), //null, // image.id
             images: [],
             title: "",
             description: "",
@@ -74,6 +97,12 @@
             file: null,
         },
         mounted: function () {
+            const me = this;
+            addEventListener("hashchange", function () {
+                console.log("hash changed");
+                me.selectedImage = location.hash.slice(1);
+            });
+
             let self = this;
             axios
                 .get("/images")
@@ -157,7 +186,8 @@
 
             closeModal: function () {
                 console.log("closeModel is running!!!!");
-                this.selectedImage = null;
+                // this.selectedImage = null;
+                location.hash = "";
             },
         },
     });

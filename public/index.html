@@ -27,11 +27,12 @@
 
         <div id="image-container">
             <div v-for="image in images">
-
+<a :href="'#' + image.id">
                 <div id="image-item">
-                    <img :src="image.url" @click="openModal(image.id)">
+                    <img :src="image.url">
 
                 </div>
+                </a>
                 <p>{{ image.title }}</p>
 
             </div>
@@ -47,7 +48,7 @@
     </div>
 
     <script id="template" type="text/x-template">
-        <div @click='closeModal' class="overlay">
+        <div class="overlay">
              
 
 <div class="modal-component">
@@ -105,24 +106,3 @@
 </body>
 
 </html>
-
-
-<!-- <h2>The best cohort is: {{name}} </h2>
-<h2 v-if="seen">Can you see me?</h2> true or false
-<h2 v-else>I am the else</h2>
-
-<ul>
-    <li v-for="city in cities" v-on:click="myFancyMethod">{{city.name}}, {{city.country}}</li> 
-    <!-- city refers to object {name, object} in array, name is not relevant, can be whatever, value is relevant-->
-<!-- v-on:click= or @click  -->
-
-<!-- <img :src="city.name" alt="">  -->
-<!-- :src or v-bind:scr -->
-<!-- </ul> -->
-
-<!-- :say-greeting refers to data inside of the instance new Vue({}) and prop:[sayGreeting] and in new Vue js
-we need to reneder the input inside of my-componenet 
-we need to ad id to our data images  -->
-
-<!-- v-if="checkForSomething" check if the same id -->
-<!-- id = null to close the component  -->
