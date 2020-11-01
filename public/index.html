@@ -2,7 +2,7 @@
 <html>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="assets/cat-black-face.png">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <head>
     <title>Imageboard
     </title>
@@ -28,10 +28,11 @@
         <div id="image-container">
             <div v-for="image in images">
                 <a :href="'#' + image.id">
-                    <div id="image-item">
+                    <div id="image-title-item">
                         <img :src="image.url">
-                    </div>
+                    <!-- </div> -->
                     <p>{{ image.title }}</p>
+                    </div>
                 </a>
             </div>
 
@@ -51,9 +52,6 @@
 
 <div class="modal-component">
    
-    <!-- <div class="x">
-    <div @click='closeModal'>X</div>
-    </div> -->
      <div class="modal-inner-box">
     <div class="image-modal-container">   
        

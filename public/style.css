@@ -11,26 +11,26 @@ body {
     background-color: white;
 }
 
-#main {
-}
+/* #main {
+} */
 
 h1 {
     /* text-align: center; */
     margin: 0 20px;
     font-family: "Lobster", cursive;
     color: black;
-    /* text-align: center; */
 }
 
 #image-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 40px;
 }
 
-#image-item {
+#image-title-item {
     padding-top: 20px;
+    margin: 0px 20px;
 }
 
 img {
@@ -70,14 +70,10 @@ img {
     overflow: auto; */
     height: 100%;
     width: 100%;
-    max-height: 91vh;
+    max-height: 100vh;
     max-width: 100vh;
     object-fit: contain;
 }
-
-/* .modal-image-container {
-    overflow: hidden;
-} */
 
 .overlay {
     position: fixed;
@@ -93,15 +89,15 @@ img {
     width: 40px;
     height: 40px;
     margin: 0 20px;
-    margin-top: 4px;
+    margin-top: 5px;
 }
 
 #form-container {
     margin: 20px;
 }
 
-.form-modal {
-}
+/* .form-modal {
+} */
 
 .more-button {
     display: flex;
@@ -114,6 +110,10 @@ img {
 .x {
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
+    cursor: pointer;
+    /* position: fixed;
+    bottom: 95%;
+    left: 95%; */
 }
 
 .modal-inner-box {
@@ -128,6 +128,7 @@ img {
     height: 480px;
     overflow: auto;
     margin: 5px 0;
+    cursor: pointer;
 }
 
 .submit:hover,
@@ -186,6 +187,8 @@ input {
 
 .image-modal-container {
     margin: 0 20px;
+    /* width: 550px; */
+    /* overflow: auto; */
 }
 
 p {
@@ -202,6 +205,7 @@ p {
     color: black;
     border-radius: 4px;
     margin: 5px 0;
+    padding: 2px;
 }
 
 .comment-p {
@@ -211,4 +215,32 @@ p {
 a {
     text-decoration: none;
     color: black;
+}
+
+@media screen and (max-width: 500px) {
+    .modal-inner-box {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+    }
+
+    #modal-scroll-box {
+        width: 100%;
+        max-height: 100%;
+        height: 200px;
+        overflow: auto;
+        margin: 5px 0;
+        cursor: pointer;
+    }
+
+    .x {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        cursor: pointer;
+        position: fixed;
+        bottom: 95%;
+        left: 95%;
+    }
 }
