@@ -67,8 +67,8 @@
     <p>created: {{image.created_at}} </p>
     </div>
  <form class="form-modal">    
-   <input v-model="comment" type="text" name="comment" placeholder="comment"> 
-   <input v-model="username" type="text" name="username" placeholder="username">
+   <textarea class="comment-input" placeholder="type comment"><input v-model="comment" type="text" rows="5"  name="comment"></textarea> 
+   <textarea class="username-input" placeholder="type username"><input v-model="username" type="text" name="username"></textarea>
   
     <button @click="handleClickComment" class="comment">Add comment</button>
 

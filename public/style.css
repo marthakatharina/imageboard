@@ -96,8 +96,9 @@ img {
     margin: 20px;
 }
 
-/* .form-modal {
-} */
+.form-modal {
+    margin: 10px;
+}
 
 .more-button {
     display: flex;
@@ -212,12 +213,24 @@ p {
     color: mediumaquamarine;
 }
 
+.comment-input {
+    border-radius: 4px;
+    width: 250px;
+    height: 50px;
+}
+
+.username-input {
+    border-radius: 4px;
+    width: 250px;
+    height: 30px;
+}
+
 a {
     text-decoration: none;
     color: black;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .modal-inner-box {
         display: flex;
         flex-direction: column;
