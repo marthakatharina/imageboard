@@ -27,14 +27,12 @@
 
         <div id="image-container">
             <div v-for="image in images">
-<a :href="'#' + image.id">
-                <div id="image-item">
-                    <img :src="image.url">
-
-                </div>
+                <a :href="'#' + image.id">
+                    <div id="image-item">
+                        <img :src="image.url">
+                    </div>
+                    <p>{{ image.title }}</p>
                 </a>
-                <p>{{ image.title }}</p>
-
             </div>
 
         </div>
@@ -42,9 +40,9 @@
 
         <my-component v-if="selectedImage" :id="selectedImage" @close="closeModal"></my-component>
 
-<div class="more-button">
-        <button @click="getMore" class="more">More</button>
-</div>
+        <div class="more-button">
+            <button @click="getMore" class="more">More</button>
+        </div>
     </div>
 
     <script id="template" type="text/x-template">
@@ -61,12 +59,7 @@
        
     <div class="modal-image-container"><img class="modal-image" :src="image.url"></div>
 
-    <!-- <div class="modal-caption">
-    <p>username: {{image.username}}</p>
-    <p>title: {{image.title}}</p>
-    <p>description: {{image.description}}</p>
-    <p>created: {{image.created_at}} </p>
-    </div> -->
+    
     </div>
     <div class="form-comment-container">
           <div class="modal-caption">
@@ -84,12 +77,14 @@
 </form>
 
 <div id="modal-scroll-box">
-      <div v-for="c in comments"> 
-    <p>comment: {{c.comment}}</p>
-    <p>username: {{c.username}}</p> 
-    <p>posted: {{c.created_at}}</p> 
-    </div>
     
+      <div v-for="c in comments"> 
+          <div class="one-comment">
+    <p class="comment-p">comment: <p>{{c.comment}}</p></p>
+    <p class="comment-p">username: <p>{{c.username}}</p></p> 
+    <p class="comment-p">posted: <p>{{c.created_at}}</p></p> 
+    </div>
+     </div>
      </div>
      
     </div>
