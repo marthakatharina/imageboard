@@ -26,7 +26,7 @@
         </div>
 
         <div id="image-container">
-            <div v-for="image in images">
+            <div v-for="image in images" :key="image.id">
                 <a :href="'#' + image.id">
                     <div id="image-title-item">
                         <img :src="image.url">
@@ -67,8 +67,8 @@
     <p>created: {{image.created_at}} </p>
     </div>
  <form class="form-modal">    
-   <textarea class="comment-input" placeholder="type comment"><input v-model="comment" type="text" rows="5"  name="comment"></textarea> 
-   <textarea class="username-input" placeholder="type username"><input v-model="username" type="text" name="username"></textarea>
+   <textarea v-model="comment" type="text" name="comment" class="comment-input" placeholder="type comment"><input v-model="comment" type="text" rows="5"  name="comment"></textarea> 
+   <textarea v-model="username" type="text" name="username" class="username-input" placeholder="type username"><input v-model="username" type="text" name="username"></textarea>
   
     <button @click="handleClickComment" class="comment">Add comment</button>
 
