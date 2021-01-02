@@ -78,6 +78,9 @@
                     .catch(function (err) {
                         console.log("err in POST /comment: ", err);
                     });
+
+                me.comment = "";
+                me.username = "";
             },
 
             closeModal: function () {
@@ -136,6 +139,10 @@
                     .catch(function (err) {
                         console.log("err in POST /images: ", err);
                     });
+
+                this.title = "";
+                this.description = "";
+                this.username = "";
             },
 
             getMore: function (e) {
@@ -176,6 +183,12 @@
                 // this.selectedImage = null;
                 location.hash = "";
             },
+
+            // resetInput: function () {
+            //     this.title = "";
+            //     this.description = "";
+            //     this.username = "";
+            // },
         },
     });
 })();

@@ -16,7 +16,7 @@ body {
 
 h1 {
     /* text-align: center; */
-    margin: 0 20px;
+    margin: 0 40px;
     font-family: "Lobster", cursive;
     color: black;
 }
@@ -88,12 +88,11 @@ img {
 .cat-icon {
     width: 40px;
     height: 40px;
-    margin: 0 20px;
-    margin-top: 5px;
+    margin: 10px 40px;
 }
 
 #form-container {
-    margin: 20px;
+    margin: 40px;
 }
 
 .form-modal {

@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="assets/cat-black-face.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <head>
     <title>Imageboard
     </title>
@@ -21,17 +22,19 @@
                 <input @change='handleChange' type="file" name="file" accept="image/*">
 
                 <button @click="handleClick" class="submit">Submit image</button>
+
             </form>
 
         </div>
+
 
         <div id="image-container">
             <div v-for="image in images" :key="image.id">
                 <a :href="'#' + image.id">
                     <div id="image-title-item">
                         <img :src="image.url">
-                    <!-- </div> -->
-                    <p>{{ image.title }}</p>
+                        <!-- </div> -->
+                        <p>{{ image.title }}</p>
                     </div>
                 </a>
             </div>
@@ -47,7 +50,8 @@
     </div>
 
     <script id="template" type="text/x-template">
-        <div class="overlay">
+<div> 
+        <div class="overlay" @click="closeModal"></div>
              
 
 <div class="modal-component">
@@ -64,11 +68,11 @@
     <p>username: {{image.username}}</p>
     <p>title: {{image.title}}</p>
     <p>description: {{image.description}}</p>
-    <p>created: {{image.created_at}} </p>
+    <p>created: {{image.created_at.slice(0, 10)}} </p>
     </div>
  <form class="form-modal">    
-   <textarea v-model="comment" type="text" name="comment" class="comment-input" placeholder="type comment"><input v-model="comment" type="text" rows="5"  name="comment"></textarea> 
-   <textarea v-model="username" type="text" name="username" class="username-input" placeholder="type username"><input v-model="username" type="text" name="username"></textarea>
+   <textarea v-model="comment" type="text" name="comment" class="comment-input" placeholder="type comment"></textarea> 
+   <textarea v-model="username" type="text" name="username" class="username-input" placeholder="type username"></textarea>
   
     <button @click="handleClickComment" class="comment">Add comment</button>
 
