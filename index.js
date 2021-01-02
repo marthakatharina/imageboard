@@ -5,6 +5,7 @@ const multer = require("multer"); // multer defines where to save files
 const uidSafe = require("uid-safe"); // encodes file name
 const path = require("path"); // grabs extention (jpg)
 const s3 = require("./s3");
+const { s3Url } = require("./config.json");
 
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -114,7 +115,9 @@ app.get("/more/:lastId", (req, res) => {
         });
 });
 
-app.listen(8080, () => console.log("Imageboard up and running"));
+app.listen(process.env.PORT || 8080, () =>
+    console.log("Imageboard up and running")
+);
 
 // image should be less than 2MB
 //upload.single("file") acts as middleware
