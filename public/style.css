@@ -61,9 +61,7 @@ h1 {
     border-radius: 10px;
 
     display: flex;
-    /* flex-direction: column; */
-    /* justify-content: center;
-    align-items: center; */
+
     flex-wrap: wrap;
     padding: 10px;
 }
@@ -235,10 +233,22 @@ a {
     color: black;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 979px) {
     #image-container {
-        display: flex;
-        flex-wrap: wrap;
+        justify-content: center;
+        margin: 2px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    #image-container {
+        justify-content: center;
+        margin: 2px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #image-container {
         justify-content: center;
         margin: 2px;
     }
