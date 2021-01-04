@@ -33,10 +33,16 @@ h1 {
     margin: 0px 20px;
 }
 
-img {
+.main-img {
     object-fit: cover;
     width: 260px;
     height: 260px;
+    border-radius: 8px;
+    box-shadow: 0.2px 1px 4px rgb(200 200 200);
+}
+
+.main-title:hover {
+    color: mediumaquamarine;
 }
 
 .modal-component {

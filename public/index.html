@@ -32,9 +32,9 @@
             <div v-for="image in images" :key="image.id">
                 <a :href="'#' + image.id">
                     <div id="image-title-item">
-                        <img :src="image.url">
+                        <img :src="image.url" class="main-img">
                         <!-- </div> -->
-                        <p>{{ image.title }}</p>
+                        <p class="main-title">{{ image.title }}</p>
                     </div>
                 </a>
             </div>
