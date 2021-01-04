@@ -236,6 +236,23 @@ a {
 }
 
 @media screen and (max-width: 600px) {
+    #image-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 2px;
+    }
+
+    #image-title-item {
+        padding: 20px 4px;
+        margin: 0px 0px;
+    }
+
+    .main-img {
+        width: 100px;
+        height: 100px;
+    }
+
     .modal-inner-box {
         display: flex;
         flex-direction: column;
