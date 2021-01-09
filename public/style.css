@@ -195,7 +195,6 @@ input {
     /* overflow: auto; */
     display: flex;
     justify-content: center;
-    align-items: ;
 }
 
 p {
@@ -299,6 +298,7 @@ a {
         overflow: auto;
         margin: 5px 0;
         cursor: pointer;
+        scrollbar-color: black mediumaquamarine;
     }
 
     .x {
