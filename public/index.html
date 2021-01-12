@@ -61,9 +61,9 @@
        
     <div class="modal-image-container"><img class="modal-image" :src="image.url">
          <div class="modal-caption">
-    <p>username: {{image.username}}</p>
     <p>title: {{image.title}}</p>
     <p>description: {{image.description}}</p>
+    <p>username: {{image.username}}</p>
     <p>created: {{image.created_at.slice(0, 10)}} </p>
     </div>
    
@@ -92,7 +92,7 @@
           <div class="one-comment">
     <p class="comment-p">comment: <p>{{c.comment}}</p></p>
     <p class="comment-p">username: <p>{{c.username}}</p></p> 
-    <p class="comment-p">posted: <p>{{c.created_at}}</p></p> 
+    <p class="comment-p">posted: <p>{{c.created_at.slice(0, 10)}} {{c.created_at.slice(11, 16)}}</p></p> 
     </div>
      </div>
      </div>
