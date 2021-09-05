@@ -1,13 +1,14 @@
 (function () {
     Vue.component("my-component", {
         template: "#template",
-        props: ["id"],
+        props: ["id", "url"],
         data: function () {
             return {
                 image: "",
                 comments: [],
                 comment: "",
                 username: "",
+                link: "",
             };
         },
 
@@ -94,16 +95,21 @@
         data: {
             selectedImage: location.hash.slice(1), //null, // image.id
             images: [],
+            links: [],
             title: "",
             description: "",
             username: "",
             file: null,
+
+            url: "",
+            selectedLink: location.hash.slice(1),
         },
         mounted: function () {
             const me = this;
             addEventListener("hashchange", function () {
                 console.log("hash changed");
                 me.selectedImage = location.hash.slice(1);
+                me.selectedLink = location.hash.slice(1);
             });
 
             let self = this;
@@ -114,6 +120,15 @@
                 })
                 .catch(function (err) {
                     console.log("error in GET / images: ", err);
+                });
+
+            axios
+                .get("/links")
+                .then(function (response) {
+                    self.links = response.data;
+                })
+                .catch(function (err) {
+                    console.log("error in GET / links: ", err);
                 });
         },
 
@@ -144,6 +159,37 @@
                 this.description = "";
                 this.username = "";
             },
+            handleClickLink: function (e) {
+                e.preventDefault();
+                console.log("this: ", this);
+
+                var link = {};
+
+                link.url = this.url;
+
+                var to = this;
+
+                axios
+                    .post("/links", { link })
+                    .then(function (response) {
+                        console.log("response from POST / links: ", response);
+                        console.log("to.links: ", to.links);
+                        console.log("response.data: ", response.data);
+
+                        to.links.unshift(response.data.rows);
+                    })
+                    .catch(function (err) {
+                        console.log("err in POST /links: ", err);
+                    });
+
+                // this.img = document.createElement("img");
+
+                // this.img.url = this.url;
+
+                // this.links.unshift(this.img);
+
+                this.url = "";
+            },
 
             getMore: function (e) {
                 e.preventDefault();
@@ -171,11 +217,17 @@
                 console.log("file: ", e.target.files[0]);
                 this.file = e.target.files[0];
             },
+            handleChangeLink: function (e) {
+                console.log("handleChange is running!!!!");
+                console.log("link: ", e.target.value);
+                this.url = e.target.value;
+            },
 
-            openModal: function (id) {
+            openModal: function (id, url) {
                 console.log("openModel is running!!!!");
                 console.log("id: ", id);
                 this.selectedImage = id;
+                this.selectedLink = url;
             },
 
             closeModal: function () {
@@ -185,9 +237,10 @@
             },
 
             // resetInput: function () {
-            //     this.title = "";
-            //     this.description = "";
-            //     this.username = "";
+            //     // this.title = "";
+            //     // this.description = "";
+            //     // this.username = "";
+            //     // this.url = "";
             // },
         },
     });

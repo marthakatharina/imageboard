@@ -8,11 +8,22 @@ module.exports.getImages = () => {
     return db.query(`SELECT * FROM images ORDER BY id DESC LIMIT 12`);
 };
 
-module.exports.postImages = (title, description, username, url) => {
+module.exports.postImages = (title, description, username, image_upload) => {
     return db.query(
-        `INSERT INTO images(title, description, username, url)
+        `INSERT INTO images(title, description, username, image_upload)
         VALUES ($1, $2, $3, $4) RETURNING *`,
-        [title, description, username, url]
+        [title, description, username, image_upload]
+    );
+};
+module.exports.getLinks = () => {
+    return db.query(`SELECT * FROM links ORDER BY id DESC LIMIT 12`);
+};
+
+module.exports.postLinks = (url) => {
+    return db.query(
+        `INSERT INTO links(url)
+        VALUES ($1) RETURNING *`,
+        [url]
     );
 };
 
@@ -38,7 +49,7 @@ module.exports.postComments = (comment, username, image_id) => {
 
 module.exports.getMoreImages = (lastId) => {
     return db.query(
-        `SELECT url, title, id, (
+        `SELECT image_upload, title, id, (
 SELECT id FROM images
 ORDER BY id ASC
 LIMIT 1

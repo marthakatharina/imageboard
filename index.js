@@ -43,10 +43,11 @@ app.post("/images", uploader.single("file"), s3.upload, function (req, res) {
     // If nothing went wrong the file is already in the uploads directory
     const { title, description, username } = req.body;
     const { filename } = req.file;
-    const url = `https://s3.amazonaws.com/spicedling/${filename}`;
+    // const image_upload = `https://s3.amazonaws.com/spicedling/${filename}`;
+    const image_upload = `https://s3.amazonaws.com/onlinebookcase/${filename}`;
 
     if (req.file) {
-        db.postImages(title, description, username, url)
+        db.postImages(title, description, username, image_upload)
             .then(({ rows }) => {
                 rows = rows[0];
                 res.json({ rows });
@@ -54,6 +55,37 @@ app.post("/images", uploader.single("file"), s3.upload, function (req, res) {
             })
             .catch((err) => {
                 console.log("error in postImages", err);
+            });
+    } else {
+        res.json({
+            success: false,
+        });
+    }
+});
+
+app.get("/links", (req, res) => {
+    db.getLinks()
+        .then(({ rows }) => {
+            console.log("rows: ", rows);
+            res.json(rows);
+        })
+        .catch((err) => {
+            console.log("error in getLinks: ", err);
+        });
+});
+
+app.post("/links", function (req, res) {
+    const { url } = req.body.link;
+
+    if (req.body) {
+        db.postLinks(url)
+            .then(({ rows }) => {
+                rows = rows[0];
+                res.json({ rows });
+                console.log("rows: ", rows);
+            })
+            .catch((err) => {
+                console.log("error in postLinks", err);
             });
     } else {
         res.json({

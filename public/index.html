@@ -20,11 +20,13 @@
                 <input v-model="description" type="text" name="description" placeholder="description">
                 <input v-model="username" type="text" name="username" placeholder="username">
                 <input @change='handleChange' type="file" name="file" accept="image/*">
-
-                <button @click="handleClick" class="submit">Submit image</button>
-
+                <button @click="handleClick" class="submit">Add</button>
             </form>
 
+             <form>
+                <input @change='handleChangeLink' type="url" pattern="https://.*" name="url" placeholder="paste a link here" />
+                   <button @click="handleClickLink"  class="submit">Add</button>
+            </form>
         </div>
 
 
@@ -32,9 +34,18 @@
             <div v-for="image in images" :key="image.id">
                 <a :href="'#' + image.id">
                     <div id="image-title-item">
-                        <img :src="image.url" class="main-img">
-                        <!-- </div> -->
+                        <img :src="image.image_upload" class="main-img">
+                     
                         <p class="main-title">{{ image.title }}</p>
+                    </div>
+                </a>
+            </div>
+            <div v-for="link in links" :key="link.id">
+                <a :href="'#' + link.id">
+                    <div id="image-title-item">
+                        <img :src="link.url" class="main-img">
+                      
+                         <p class="main-title">{{ link.title }}</p> 
                     </div>
                 </a>
             </div>
@@ -59,7 +70,9 @@
      <div class="modal-inner-box">
     <div class="image-modal-container">   
        
-    <div class="modal-image-container"><img class="modal-image" :src="image.url">
+    <div class="modal-image-container">
+        <img class="modal-image" :src="image.image_upload">
+        <!-- <img class="modal-image" :src='link.url'> -->
          <div class="modal-caption">
     <p>title: {{image.title}}</p>
     <p>description: {{image.description}}</p>
